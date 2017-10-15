@@ -26,7 +26,7 @@ def find_abc_product():
                     print a
                     print b
                     print c
-                    return a+b+c
+                    return a * b * c
 
 
 print find_abc_product()
