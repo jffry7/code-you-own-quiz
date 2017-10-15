@@ -23,6 +23,9 @@ def find_abc_product():
             c_start = b + 1
             for c in range(c_start, total_sum - 1):
                 if a + b + c == total_sum and check_py_triplet(a, b, c):
+                    print a
+                    print b
+                    print c
                     return a+b+c
 
 
