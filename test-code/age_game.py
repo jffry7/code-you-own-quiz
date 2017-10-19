@@ -1,7 +1,5 @@
 #!/usr/bin/python
 # coding=utf-8
-import msvcrt as m
-# from https://docs.python.org/2/library/msvcrt.html
 
 
 def pause():
@@ -9,7 +7,7 @@ def pause():
     print
     print "press ENTER when ready..."
     print
-    m.getch()
+    raw_input()
 
 
 def split_number(number_value, year_value):
@@ -38,7 +36,7 @@ pause()
 print "multiply it by 20"
 pause()
 print "finally subtract the answer from the year you were born"
-user_input_number = int(raw_input("What is the final answer: "))
+user_input_number = abs(int(raw_input("What is the final answer: ")))
 # output the processed numbers
 print
 print user_name.title() + "'s lucky number is", split_number(user_input_number, current_year)
