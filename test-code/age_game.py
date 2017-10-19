@@ -5,16 +5,16 @@ import msvcrt as m
 
 
 def pause():
+    u"""Add pause to the game."""
     print
     print "press ENTER when ready..."
     print
     m.getch()
-    # pause for user
 
 
 def split_number(number_value):
+    u"""Split xyz to x and yz."""
     # process the user output
-    # split xyz to x and yz
     number_value = str(1015 - number_value)
     # subtract value from control and coverts to string
     user_number = number_value[0]  # first string value
