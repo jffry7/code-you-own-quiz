@@ -1,12 +1,6 @@
 #!/usr/bin/python
 # coding=utf-8
 
-"""
-req D100 missing docstring.
-
-D200 more than one line required
-find_last
-"""
 
 # Define a procedure, find_last, that takes as input two strings,
 # a search string and a target string,

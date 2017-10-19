@@ -1,11 +1,6 @@
 #!/usr/bin/python
 # coding=utf-8
 
-"""
-req D100 missing docstring.
-
-D200 more than one line required
-"""
 # Let's go over another string method: string.replace. Use this method
 # to replace the instance of NOUN with "duck" and VERB with "waddle" in the string
 # sentence. For more information, visit http://www.tutorialspoint.com/python/string_replace.htm.

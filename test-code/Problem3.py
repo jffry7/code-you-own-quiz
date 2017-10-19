@@ -1,11 +1,6 @@
 #!/usr/bin/python
 # coding=utf-8
 
-"""
-req D100 missing docstring.
-
-D200 more than one line required
-"""
 # Create a distribution table of all the letters in this article. The table should be a dictionary
 # that contains every letter found in this article and the count of how many of the characters
 # is present in the article.

@@ -1,11 +1,6 @@
 #!/usr/bin/python
 # coding=utf-8
 
-"""
-req D100 missing docstring.
-
-D200 more than one line required
-"""
 s = 'test'
 print ('a' + s)[1:]  # a+'string' then prints 1-end. it exclude a
 print s[0] + s[1:]  # will not work if s=''

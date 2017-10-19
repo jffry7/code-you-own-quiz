@@ -1,11 +1,6 @@
 #!/usr/bin/python
 # coding=utf-8
 
-"""
-req D100 missing docstring.
-
-D200 more than one line required
-"""
 
 # This segment is just a chance for you to play around with
 # finding strings within strings. Read through the code and

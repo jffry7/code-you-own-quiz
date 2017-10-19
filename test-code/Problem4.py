@@ -1,12 +1,6 @@
 #!/usr/bin/python
 # coding=utf-8
 
-"""
-req D100 missing docstring.
-
-D200 more than one line required
-"""
-
 
 def check_py_triplet(a, b, c):
     return a**2 + b**2 == c**2

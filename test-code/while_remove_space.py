@@ -1,15 +1,10 @@
 #!/usr/bin/python
 # coding=utf-8
 
-"""
-req D100 missing docstring.
-
-D200 more than one line required
-"""
 i = 0
 while i < 10:
     print i
-    i = i+1
+    i = i + 1
 
 # This uses a while loop to remove all the spaces from a string of
 # text. Can you figure out how it works?

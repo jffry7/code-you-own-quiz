@@ -1,11 +1,6 @@
 #!/usr/bin/python
 # coding=utf-8
 
-"""
-req D100 missing docstring.
-
-D200 more than one line required
-"""
 # Assume text is a variable that
 # holds a string. Write Python code
 # that prints out the position

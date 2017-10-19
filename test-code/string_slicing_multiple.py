@@ -1,11 +1,6 @@
 #!/usr/bin/python
 # coding=utf-8
 
-"""
-req D100 missing docstring.
-
-D200 more than one line required
-"""
 # Use string slicing to store everything before "NOUN" in substring1,
 # everything after "NOUN" and before "VERB" in substring2,
 # and everything after "VERB" in substring3.
