@@ -5,7 +5,9 @@ import msvcrt as m
 
 
 def pause():
+    print
     print "press ENTER when ready..."
+    print
     m.getch()
     # pause for user
 
@@ -36,5 +38,5 @@ pause()
 print "finally subtract the answer from the year you were born"
 user_input_number = int(raw_input("What is the final answer: "))
 # output the processed numbers
-print " "
+print
 print user_name.title() + "'s lucky number is", split_number(user_input_number)
