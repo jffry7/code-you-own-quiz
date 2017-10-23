@@ -39,18 +39,15 @@ user_name = raw_input("Who are you? ")
 # added the year factor as it will vary if played years after it was created
 current_year = int(raw_input("What is the current year? "))
 # start of the game
+
+printbox("You may need a calculator")
 print
-print "You may need a calculator"
-pause()
 print user_name.title(), "think of a number from 1 to 9"
-pause()
 print "then multiply it by 5"
-pause()
 print "then add 50"
-pause()
 print "multiply it by 20"
-pause()
-print "finally, deduct the answer from the year you were born"
+print "finally, your birth year minus the answer above"
+print
 user_input_number = abs(int(raw_input("What is the final answer: ")))
 # output the processed numbers
 print
