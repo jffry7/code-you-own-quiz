@@ -40,7 +40,7 @@ current_year = int(raw_input("What is the current year? "))
 print "Press Enter to proceed."
 pause("You may need a calculator")
 first_message = ", think of a number from 1 to 9"
-print bar(len(user_name.title()) + len(first_message))  # 31 is the len() of next line
+print bar(len(user_name.title()) + len(first_message))
 # Add bar separator for the instruction set
 print user_name.title() + first_message
 print "then multiply it by 5"
@@ -54,7 +54,7 @@ user_input_number = abs(int(raw_input("What is the final answer: ")))
 print
 user_number, user_age = split_number(user_input_number, current_year)
 printbox(user_name.title() + "'s lucky number is " + user_number)
-printbox(" and is " + user_age + " yrs old")
+printbox("You are " + user_age + " yrs old")
 # print "+-" + bar(len(split_number(user_input_number, current_year))) + "-+"
 # print "| " + split_number(user_input_number, current_year) + " |"
 # print "+-" + bar(len(split_number(user_input_number, current_year))) + "-+"
