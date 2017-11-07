@@ -61,3 +61,6 @@ def count_days(monthB, dayB, yearB, monthE, dayE, yearE):
 
 
 print count_days(7, 6, 1964, 10, 31, 2017)
+print count_days(12, 7, 2012, 12, 7, 2012)
+print count_days(6, 29, 2012, 6, 29, 2013)
+print count_days(6, 29, 2012, 6, 31, 2013)
