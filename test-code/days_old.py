@@ -1,3 +1,4 @@
+<<<<<<< current
 #!/usr/bin/python
 # coding=utf-8
 
@@ -64,3 +65,81 @@ print count_days(7, 6, 1964, 10, 31, 2017)
 print count_days(12, 7, 2012, 12, 7, 2012)
 print count_days(6, 29, 2012, 6, 29, 2013)
 print count_days(6, 29, 2012, 6, 31, 2013)
+=======
+#!/usr/bin/python
+# coding=utf-8
+
+# vdays_per_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+days_per_month = [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30]
+
+
+def is_it_a_leap_year(year):
+    if (year % 4 == 0 and year % 100 != 0) or year % 400 == 0:
+        return True
+    return False
+
+
+def dateIsBefore(year1, month1, day1, year2, month2, day2):
+    """Returns True if year1-month1-day1 is before year2-month2-day2. Otherwise, returns False."""
+    if year1 < year2:
+        return True
+    if year1 == year2:
+        if month1 < month2:
+            return True
+        if month1 == month2:
+            return day1 < day2
+    return False
+
+
+def year_one(month, day):
+    totaldays = days_per_month[month - 1] - day
+    # adds number of days for the first month
+    if month < 12:
+        for counter in range(month, 12):
+            # print counter, totaldays  # debug
+            totaldays += days_per_month[counter]
+            # did not remove the first month since python list starts at 0
+            # it starts the add the following month
+    return totaldays
+
+
+def last_year(month, day):
+    totaldays = day
+    month -= 1
+    for counter in range(0, month):
+        totaldays += days_per_month[counter]
+    return totaldays
+
+
+def count_days(yearB, monthB, dayB, yearE, monthE, dayE):
+    number_of_days = 0
+    if yearB == yearE:
+        number_of_days = dayE - dayB
+    else:
+        if monthB <= 2:
+            if is_it_a_leap_year(yearB) is True:
+                number_of_days = year_one(monthB, dayB) + 1
+        else:
+            number_of_days = year_one(monthB, dayB)
+        # print number_of_days  # debug
+        yearB += 1
+        # print yearB # debug
+        if yearB < yearE:
+            for year_counter in range(yearB, yearE):
+                if is_it_a_leap_year(year_counter) is True:
+                    number_of_days += 366
+                else:
+                    number_of_days += 365
+        if is_it_a_leap_year(yearE) is True:
+            if monthE <= 2:
+                number_of_days = number_of_days + last_year(monthE, dayE) + 1
+        else:
+            number_of_days += last_year(monthE, dayE)
+    return number_of_days
+
+
+print count_days(7, 6, 1964, 10, 31, 2017)
+print count_days(12, 7, 2012, 12, 7, 2012)
+print count_days(6, 29, 2012, 6, 29, 2013)
+print count_days(6, 29, 2012, 6, 31, 2013)
+>>>>>>> before discard
