@@ -6,6 +6,7 @@
 # Use Dave's suggestions to finish your daysBetweenDates
 # procedure. It will need to take into account leap years
 # in addition to the correct number of days in each month.
+days_per_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 
 def is_it_a_leap_year(year):
@@ -15,8 +16,12 @@ def is_it_a_leap_year(year):
 
 
 def nextDay(year, month, day):
-    """Simple version: assume every month has 30 days."""
-    if day < 30:
+    """Do Simple version: assume every month has 30 days."""
+    if month == 2 and is_it_a_leap_year(year) is True:
+        days_in_month = days_per_month[month - 1] + 1
+    else:
+        days_in_month = days_per_month[month - 1]
+    if day < days_in_month:
         return year, month, day + 1
     else:
         if month == 12:
@@ -25,8 +30,9 @@ def nextDay(year, month, day):
             return year, month + 1, 1
 
 
+
 def dateIsBefore(year1, month1, day1, year2, month2, day2):
-    """Returns True if year1-month1-day1 is before year2-month2-day2. Otherwise, returns False."""
+    """Do Returns True if year1-month1-day1 is before year2-month2-day2. Otherwise, returns False."""
     if year1 < year2:
         return True
     if year1 == year2:
@@ -38,22 +44,13 @@ def dateIsBefore(year1, month1, day1, year2, month2, day2):
 
 
 def daysBetweenDates(year1, month1, day1, year2, month2, day2):
-    """Returns the number of days between year1/month1/day1."""
-    """and year2/month2/day2. Assumes inputs are valid dates
-       in Gregorian calendar."""
     # program defensively! Add an assertion if the input is not valid!
     assert not dateIsBefore(year2, month2, day2, year1, month1, day1)
     days = 0
-    counter = 0
     while dateIsBefore(year1, month1, day1, year2, month2, day2):
         year1, month1, day1 = nextDay(year1, month1, day1)
         days += 1
-    while year1 <= year2:
-        if is_it_a_leap_year(year1) is True:
-            counter += 1
-        year1 += 1
-    print counter + days
-    return days + counter
+    return days
 
 
 def test():
