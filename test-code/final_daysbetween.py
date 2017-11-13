@@ -1,15 +1,16 @@
 #!/usr/bin/python
 # coding=utf-8
 
-# Credit goes to Websten from forums
-#
+"""Credit goes to Websten from forums."""
 # Use Dave's suggestions to finish your daysBetweenDates
 # procedure. It will need to take into account leap years
-# in addition to the correct number of days in each month.
+# in addition to the correct number of days in each month."""
+
 days_per_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 
 def is_it_a_leap_year(year):
+    """Do check for leapyear."""
     if (year % 4 == 0 and year % 100 != 0) or year % 400 == 0:
         return True
     return False
@@ -30,9 +31,8 @@ def nextDay(year, month, day):
             return year, month + 1, 1
 
 
-
 def dateIsBefore(year1, month1, day1, year2, month2, day2):
-    """Do Returns True if year1-month1-day1 is before year2-month2-day2. Otherwise, returns False."""
+    """Do True year1-month1-day1 is before year2-month2-day2.returns False."""
     if year1 < year2:
         return True
     if year1 == year2:
@@ -44,6 +44,7 @@ def dateIsBefore(year1, month1, day1, year2, month2, day2):
 
 
 def daysBetweenDates(year1, month1, day1, year2, month2, day2):
+    """Do assert and compute for days in between dates."""
     # program defensively! Add an assertion if the input is not valid!
     assert not dateIsBefore(year2, month2, day2, year1, month1, day1)
     days = 0
@@ -54,6 +55,7 @@ def daysBetweenDates(year1, month1, day1, year2, month2, day2):
 
 
 def test():
+    """Do set of sample/test cases."""
     test_cases = [((2012, 1, 1, 2012, 2, 28), 58),
                   ((2012, 1, 1, 2012, 3, 1), 60),
                   ((2011, 6, 30, 2012, 6, 30), 366),
