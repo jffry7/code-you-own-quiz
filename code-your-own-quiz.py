@@ -46,7 +46,7 @@ def ask_question(question, target_range):
             if answer_to_question in range(min_number, target_range):
                 return answer_to_question
             else:
-                printbox("Out of range, it needs to be less than " + target_range)
+                printbox("Out of range, it needs to be less than " + str(target_range))
                 pause("Press Enter to continue....")
                 # User will need to press enter to re-enter answer to question
         else:
