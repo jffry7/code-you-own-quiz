@@ -34,34 +34,10 @@ def printbox(message):
     print "+-" + bar(len(message)) + "-+"
 
 
-def old_ask_question(question, target_range):
-    """Do ask the generic question and return an integer."""
-    # re-use the function to ask question
-    # validates input to required parameter
-    answer_to_question = raw_input(question)
-    # check if input is a digit
-    while not answer_to_question.isdigit():
-        printbox(answer_to_question + " is not a digit")
-        pause("Press Enter to continue....")
-        # User will need to press enter to re-enter answer to question
-        answer_to_question = raw_input(question)
-        answer_to_question = int(answer_to_question)
-        # Converts variable to integer, required for next segment
-    # Check if input is within the min max range
-    while answer_to_question not in range(min_number, target_range):
-        printbox("Out of range")
-        pause("Press Enter to continue....")
-        # User will need to press enter to re-enter answer to question
-        answer_to_question = raw_input(question)
-        answer_to_question = int(answer_to_question)
-        # Converts to integer required for checking range
-    return answer_to_question
-
-
 def ask_question(question, target_range):
     """Do ask the generic question and return an integer."""
     # re-use the function to ask question
-    # validates input to required parameter
+    # Infinite loop to validates input to required parameter
     while True:
         answer_to_question = raw_input(question)
         # check if input is a digit and within range min-max
@@ -70,7 +46,7 @@ def ask_question(question, target_range):
             if answer_to_question in range(min_number, target_range):
                 return answer_to_question
             else:
-                printbox("Out of range")
+                printbox("Out of range, it needs to be less than " + target_range)
                 pause("Press Enter to continue....")
                 # User will need to press enter to re-enter answer to question
         else:
