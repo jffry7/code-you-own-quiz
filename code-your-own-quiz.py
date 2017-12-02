@@ -34,7 +34,7 @@ def printbox(message):
     print "+-" + bar(len(message)) + "-+"
 
 
-def ask_question(question, target_range):
+def old_ask_question(question, target_range):
     """Do ask the generic question and return an integer."""
     # re-use the function to ask question
     # validates input to required parameter
@@ -58,11 +58,38 @@ def ask_question(question, target_range):
     return answer_to_question
 
 
+def ask_question(question, target_range):
+    """Do ask the generic question and return an integer."""
+    # re-use the function to ask question
+    # validates input to required parameter
+    while True:
+        answer_to_question = raw_input(question)
+        # check if input is a digit and within range min-max
+        if answer_to_question.isdigit():
+            answer_to_question = int(answer_to_question)
+            if answer_to_question in range(min_number, target_range):
+                return answer_to_question
+            else:
+                printbox("Out of range")
+                pause("Press Enter to continue....")
+                # User will need to press enter to re-enter answer to question
+        else:
+            printbox(answer_to_question + " is not a digit")
+            pause("Press Enter to continue....")
+            # User will need to press enter to re-enter answer to question
+
+
 def game_settings():
     """Return the game level and mistakes allowed."""
+    # Defines user preferred game level
+    # Defines user preferred number of guesses
     print "Choose the game level"
     game_level = ask_question("Choose game level from" + str(min_number) +
                               " to " + str(max_game_level) + " : ", (max_game_level + 1))
+    # +1 is for range purpose only
     print "Total number of question is " + str(num_question_per_level) + " times the game difficulty"
-    number_of_mistakes = ask_question("How many mistake(s) allowed before the game ends? ", (num_question_per_level * game_level))
+    number_of_mistakes = ask_question("How many mistake(s) allowed before the game ends? ", ((num_question_per_level * game_level) + 1))
     return game_level, number_of_mistakes
+
+
+print game_settings()
