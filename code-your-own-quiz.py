@@ -39,31 +39,30 @@ def ask_question(question, target_range):
     # re-use the function to ask question
     # validates input to required parameter
     answer_to_question = raw_input(question)
+    # check if input is a digit
     while not answer_to_question.isdigit():
         printbox(answer_to_question + " is not a digit")
         pause("Press Enter to continue....")
+        # User will need to press enter to re-enter answer to question
         answer_to_question = raw_input(question)
-    # check if input is a digit
-    answer_to_question = int(answer_to_question)
+        answer_to_question = int(answer_to_question)
+        # Converts variable to integer, required for next segment
+    # Check if input is within the min max range
     while answer_to_question not in range(min_number, target_range):
         printbox("Out of range")
         pause("Press Enter to continue....")
+        # User will need to press enter to re-enter answer to question
         answer_to_question = raw_input(question)
         answer_to_question = int(answer_to_question)
-    # Check if input is within the min max range
+        # Converts to integer required for checking range
     return answer_to_question
 
 
-def main():
+def game_settings():
+    """Return the game level and mistakes allowed."""
     print "Choose the game level"
     game_level = ask_question("Choose game level from" + str(min_number) +
                               " to " + str(max_game_level) + " : ", (max_game_level + 1))
     print "Total number of question is " + str(num_question_per_level) + " times the game difficulty"
     number_of_mistakes = ask_question("How many mistake(s) allowed before the game ends? ", (num_question_per_level * game_level))
     return game_level, number_of_mistakes
-
-
-print main()
-
-
-# print number_of_mistakes(game_difficulty(), num_question_per_level)
