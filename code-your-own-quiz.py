@@ -6,11 +6,7 @@
 # User decides how many wrong guesses before they lose
 # Game type: Fill in the blanks
 # Game level: 1 ~ 4 with 5 question in each level
-
-num_question_per_level = 4
-min_number = 1
-max_game_level = 4
-max_question = 4
+import random
 
 
 def pause(pause_message):
@@ -68,4 +64,33 @@ def game_settings():
     return game_level, number_of_mistakes
 
 
-print game_settings()
+# ====Global Variable====
+num_question_per_level = 4
+min_number = 1
+max_game_level = 4
+max_question = 4
+country_list = []
+country_capital = {
+                    "Australia": "Canberra",
+                    "Austria": "Vienna",
+                    "Belgium": "Brussels",
+                    "Botswana": "Gaborone",
+                    "Canada": "Ottawa",
+                    "Cyprus": "Nicosia",
+                    "Honduras": "Tegucigalpa",
+                    "Indonesia": "Jakarta",
+                    "Ireland": "Dublin",
+                    "Japan": "Tokyo",
+                    "North Korea": "Pyongyang",
+                    "Latvia": "Riga",
+                    "Morocco": "Rabat",
+                    "Philippines": "Manila",
+                    "Singapore": "Singapore",
+                    "Vietnam": "Hanoi"
+                    }
+# =======================
+
+# country_keys = []
+# for country in dict(country_capital):
+#     country_keys.append(country)
+print random.sample(country_capital, 2)
