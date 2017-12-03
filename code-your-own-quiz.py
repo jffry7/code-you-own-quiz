@@ -71,7 +71,8 @@ num_question_per_level = 4
 # Questions per level
 min_number = 1
 # Used to specify lowest number for range functions
-replaced_words = ["country", "capital"]
+geography_subject = "capital"
+# use to replace the question
 country_capital = {
                     "Australia": "Canberra",
                     "Austria": "Vienna",
@@ -112,6 +113,6 @@ while counter < question_multiplier * num_question_per_level:
 
 
 for question_counter in range(0, len(country_list)):
-    print "Blank is the capital of " + "".join(country_list[question_counter])
-    user_answer = raw_input("What is Blank? ")
-    print "{} is the capital of {}".format(user_answer.title(), "".join(country_list[question_counter]))
+    print "What is the {} of ".format(geography_subject) + "".join(country_list[question_counter]) + " ?"
+    user_answer = raw_input("Answer: ")
+    printbox("{} is the {} of {}".format(user_answer.title(), geography_subject, "".join(country_list[question_counter])))
