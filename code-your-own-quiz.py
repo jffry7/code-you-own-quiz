@@ -115,4 +115,5 @@ while counter < question_multiplier * num_question_per_level:
 for question_counter in range(0, len(country_list)):
     print "What is the {} of ".format(geography_subject) + "".join(country_list[question_counter]) + " ?"
     user_answer = raw_input("Answer: ")
-    printbox("{} is the {} of {}".format(user_answer.title(), geography_subject, "".join(country_list[question_counter])))
+    printbox("{} is the {} of {}".format(user_answer.title(), geography_subject,
+                                         "".join(country_list[question_counter])))
