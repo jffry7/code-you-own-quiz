@@ -47,8 +47,8 @@ def ask_question(question, target_range):
                 # User will need to press enter to re-enter answer to question
         else:
             printbox(answer_to_question + " is not a digit")
+            # Return invalid answer and ask again
             pause("Press Enter to continue....")
-            # User will need to press enter to re-enter answer to question
 
 
 def game_settings():
@@ -60,16 +60,17 @@ def game_settings():
                               " to " + str(max_game_level) + " : ", (max_game_level + 1))
     # +1 is for range purpose only
     print "Total number of question is " + str(num_question_per_level) + " times the game difficulty"
-    number_of_mistakes = ask_question("How many mistake(s) allowed before the game ends? ", ((num_question_per_level * game_level) + 1))
+    number_of_mistakes = ask_question("How many mistake(s) allowed before the game ends? ",
+                                      ((num_question_per_level * game_level) + 1))
+    # Range is multiple of game level
     return game_level, number_of_mistakes
 
 
 # ====Global Variable====
 num_question_per_level = 4
+# Questions per level
 min_number = 1
-max_game_level = 4
-max_question = 4
-country_list = []
+# Used to specify lowest number for range functions
 country_capital = {
                     "Australia": "Canberra",
                     "Austria": "Vienna",
@@ -88,9 +89,24 @@ country_capital = {
                     "Singapore": "Singapore",
                     "Vietnam": "Hanoi"
                     }
+# List of country and capital. Can be inceased manually to increase game level
+# Increase by 4 or the num_question_per_level to add 1 level
 # =======================
 
 # country_keys = []
 # for country in dict(country_capital):
 #     country_keys.append(country)
-print random.sample(country_capital, 2)
+# print random.sample(country_capital, 2)
+max_game_level = len(country_capital) / num_question_per_level
+country_list = []
+# Initiate list for countries during game
+
+question_multiplier, number_of_errors = game_settings()
+counter = 0
+while counter < question_multiplier * num_question_per_level:
+    add_country_question = random.sample(country_capital, 1)
+    if add_country_question not in country_list:
+        country_list.append(add_country_question)
+        counter += 1
+
+print country_list
