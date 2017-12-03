@@ -71,6 +71,7 @@ num_question_per_level = 4
 # Questions per level
 min_number = 1
 # Used to specify lowest number for range functions
+replaced_words = ["country", "capital"]
 country_capital = {
                     "Australia": "Canberra",
                     "Austria": "Vienna",
@@ -93,20 +94,24 @@ country_capital = {
 # Increase by 4 or the num_question_per_level to add 1 level
 # =======================
 
-# country_keys = []
-# for country in dict(country_capital):
-#     country_keys.append(country)
-# print random.sample(country_capital, 2)
 max_game_level = len(country_capital) / num_question_per_level
+# Sets max selectable game level depending of entries in dictionary country_capital
 country_list = []
 # Initiate list for countries during game
-
+print "This is a game of Geography"
 question_multiplier, number_of_errors = game_settings()
+# Gets user input for game difficulty and limit
 counter = 0
 while counter < question_multiplier * num_question_per_level:
     add_country_question = random.sample(country_capital, 1)
+    # Generate random Countries for questionaire
+    # Check for duplicate
     if add_country_question not in country_list:
         country_list.append(add_country_question)
         counter += 1
 
-print country_list
+
+for question_counter in range(0, len(country_list)):
+    print "Blank is the capital of " + "".join(country_list[question_counter])
+    user_answer = raw_input("What is Blank? ")
+    print "{} is the capital of {}".format(user_answer.title(), "".join(country_list[question_counter]))
