@@ -12,8 +12,9 @@ num_question_per_level = 4
 # Questions per level
 min_number = 1
 # Used to specify lowest number for range functions
+# Dictionary and keyword for the quiz
+subjects = ["Chemistry", "Geography"]
 geography_keyword = "capital"
-# use to replace the question
 country_capital = {
                     "Australia": "Canberra",
                     "Austria": "Vienna",
@@ -32,12 +33,35 @@ country_capital = {
                     "Singapore": "Singapore",
                     "Vietnam": "Hanoi"
                     }
-# List of country and capital. Can be inceased manually to increase game level
+chemistry_keyword = "chemical symbol"
+checmical_symbol = {
+                    "Hydrogen": "H",
+                    "Helium": "He",
+                    "Lithium": "L",
+                    "Beryllium": "Be",
+                    "Boron": "B",
+                    "Carbon": "C",
+                    "Nitrogen": "N",
+                    "Oxygen": "O",
+                    "Fluorine": "F",
+                    "Neon": "Ne",
+                    "Sodium": "Na",
+                    "Magnesium": "Mg",
+                    "Aluminium": "Al",
+                    "Silicon": "Si",
+                    "Phosphorus": "P",
+                    "Sulfur": "S",
+                    "Chlorine": "Cl",
+                    "Argon": "Ar",
+                    "Potassium": "K",
+                    "Calcium": "Ca"
+                    }
+# dictionary can be inceased manually to increase game level
 # Increase by 4 or the num_question_per_level to add 1 level
 generic_question = "What is the {} of "
 generic_answer = "{} is the {} of {}"
 generic_wrong_answer = "{} is not the {} of {}"
-generic_banner = "This is a game of {}"
+generic_banner = "This is a quiz for {}"
 # =======================
 
 
@@ -83,6 +107,17 @@ def ask_question(question, target_range):
             pause("Press Enter to continue....")
 
 
+def game_subject(subject_selection):
+    """Return the user selected subject."""
+    print "Please select subject for the quiz"
+    counter = 0
+    for subject in subject_selection:
+        counter += 1
+        print str(counter) + ". " + subject
+    selected_subject = ask_question("Select sunject 1 or 2: ", (len(subject_selection)) + 1)
+    return selected_subject - 1
+
+
 def game_settings():
     """Return the game level and mistakes allowed."""
     # Defines user preferred game level
@@ -111,7 +146,7 @@ def create_questions(question_multiplier, generic_pool):
     return generic_question_list
 
 
-def questionaire(generic_question_list, generic_keyword, number_of_errors, country_capital):
+def questionaire(generic_question_list, generic_keyword, number_of_errors, generic_dictionary):
     """Do present user for a question related to selected subject."""
     # Uses the generic question/answer format to present the I/O to user
     for question_counter in range(0, len(generic_question_list)):
@@ -121,9 +156,9 @@ def questionaire(generic_question_list, generic_keyword, number_of_errors, count
             if number_of_errors != 0:
                 print generic_question.format(generic_keyword) + "".join(generic_question_list[question_counter]) + " ?"
                 user_answer = raw_input("Answer: ")
-                if check_answer(generic_question_list[question_counter], user_answer, country_capital) is False:
+                if check_answer(generic_question_list[question_counter], user_answer, generic_dictionary) is False:
                     number_of_errors -= 1
-                    printbox(generic_wrong_answer.format(user_answer.title(), generic_keyword,
+                    printbox("Incorrect! " + generic_wrong_answer.format(user_answer.title(), generic_keyword,
                              "".join(generic_question_list[question_counter])))
                     print number_of_errors, "more chance(s)"
                 else:
@@ -143,6 +178,26 @@ def check_answer(question_key, user_answer, ref_dictionary):
     return False
 
 
+quiz_subject = subjects[game_subject(subjects)]
+if quiz_subject == "Chemistry":
+    max_game_level = len(checmical_symbol) / num_question_per_level
+    # Sets max selectable game level depending of entries in dictionary checmical_symbol
+    print generic_banner.format(quiz_subject)
+    generic_dictionary = checmical_symbol
+elif quiz_subject == "Geography":
+    max_game_level = len(country_capital) / num_question_per_level
+    # Sets max selectable game level depending of entries in dictionary country_capital
+    print generic_banner.format(quiz_subject)
+    generic_dictionary = country_capital
+generic_question_list = []
+# Initiate list for countries during game
+question_multiplier, number_of_errors = game_settings()
+questionaire(create_questions(question_multiplier, generic_dictionary), geography_keyword, number_of_errors, generic_dictionary)
+print "Good Job!"
+
+"""
+print game_subject(subjects)
+
 max_game_level = len(country_capital) / num_question_per_level
 # Sets max selectable game level depending of entries in dictionary country_capital
 generic_question_list = []
@@ -151,5 +206,6 @@ print generic_banner.format("Geography")
 question_multiplier, number_of_errors = game_settings()
 # Gets user input for game difficulty and limit
 
-questionaire(create_questions(question_multiplier, country_capital), geography_keyword, number_of_errors, country_capital)
+questionaire(create_questions(question_multiplier, country_capital), geography_keyword, number_of_errors, generic_dictionary)
 print "Good Job!"
+"""
