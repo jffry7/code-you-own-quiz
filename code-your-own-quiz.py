@@ -183,6 +183,7 @@ def questionaire(generic_question_list, generic_keyword, number_of_mistakes, gen
 
 def check_answer(question_key, user_answer, ref_dictionary):
     """Do check the user input to the dictionary."""
+    # Verify user answer is correct compared to quiz dictionary used
     if user_answer.title() == ref_dictionary.get("".join(question_key)):
         return True
     return False
