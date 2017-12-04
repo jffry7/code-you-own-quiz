@@ -12,8 +12,9 @@ num_question_per_level = 4
 # Questions per level
 min_number = 1
 # Used to specify lowest number for range functions
-# Dictionary and keyword for the quiz
+# Do not add subject on list in this current version
 subjects = ["Chemistry", "Geography"]
+# Dictionary and keyword for the quiz
 # Entry for subject Chemistry
 chemistry_keyword = "chemical symbol"
 checmical_symbol = {
@@ -189,7 +190,9 @@ def check_answer(question_key, user_answer, ref_dictionary):
     return False
 
 
+# User selects the subject
 quiz_subject = subjects[game_subject(subjects)]
+# Only 2 subject can be selected in this version
 if quiz_subject == "Chemistry":
     max_game_level = len(checmical_symbol) / num_question_per_level
     # Sets max selectable game level depending of entries in dictionary checmical_symbol
