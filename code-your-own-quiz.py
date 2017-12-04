@@ -7,6 +7,38 @@
 # Game type: Fill in the blanks
 # Game level: 1 ~ 4 with 5 question in each level
 import random
+# ====Global Variable====
+num_question_per_level = 4
+# Questions per level
+min_number = 1
+# Used to specify lowest number for range functions
+geography_keyword = "capital"
+# use to replace the question
+country_capital = {
+                    "Australia": "Canberra",
+                    "Austria": "Vienna",
+                    "Belgium": "Brussels",
+                    "Botswana": "Gaborone",
+                    "Canada": "Ottawa",
+                    "Cyprus": "Nicosia",
+                    "Honduras": "Tegucigalpa",
+                    "Indonesia": "Jakarta",
+                    "Ireland": "Dublin",
+                    "Japan": "Tokyo",
+                    "North Korea": "Pyongyang",
+                    "Latvia": "Riga",
+                    "Morocco": "Rabat",
+                    "Philippines": "Manila",
+                    "Singapore": "Singapore",
+                    "Vietnam": "Hanoi"
+                    }
+# List of country and capital. Can be inceased manually to increase game level
+# Increase by 4 or the num_question_per_level to add 1 level
+generic_question = "What is the {} of "
+generic_answer = "{} is the {} of {}"
+generic_wrong_answer = "{} is not the {} of {}"
+generic_banner = "This is a game of {}"
+# =======================
 
 
 def pause(pause_message):
@@ -66,54 +98,58 @@ def game_settings():
     return game_level, number_of_mistakes
 
 
-# ====Global Variable====
-num_question_per_level = 4
-# Questions per level
-min_number = 1
-# Used to specify lowest number for range functions
-geography_subject = "capital"
-# use to replace the question
-country_capital = {
-                    "Australia": "Canberra",
-                    "Austria": "Vienna",
-                    "Belgium": "Brussels",
-                    "Botswana": "Gaborone",
-                    "Canada": "Ottawa",
-                    "Cyprus": "Nicosia",
-                    "Honduras": "Tegucigalpa",
-                    "Indonesia": "Jakarta",
-                    "Ireland": "Dublin",
-                    "Japan": "Tokyo",
-                    "North Korea": "Pyongyang",
-                    "Latvia": "Riga",
-                    "Morocco": "Rabat",
-                    "Philippines": "Manila",
-                    "Singapore": "Singapore",
-                    "Vietnam": "Hanoi"
-                    }
-# List of country and capital. Can be inceased manually to increase game level
-# Increase by 4 or the num_question_per_level to add 1 level
-# =======================
+def create_questions(question_multiplier, generic_pool):
+    """Return a random list of dictionary entry."""
+    counter = 0
+    while counter < question_multiplier * num_question_per_level:
+        add_generic_question = random.sample(generic_pool, 1)
+        # Generate random Countries for questionaire
+        # Check for duplicate
+        if add_generic_question not in generic_question_list:
+            generic_question_list.append(add_generic_question)
+            counter += 1
+    return generic_question_list
+
+
+def questionaire(generic_question_list, generic_keyword, number_of_errors, country_capital):
+    """Do present user for a question related to selected subject."""
+    # Uses the generic question/answer format to present the I/O to user
+    for question_counter in range(0, len(generic_question_list)):
+        while True:
+            # Number of question is dependent on user selected level
+            user_answer = ""
+            if number_of_errors != 0:
+                print generic_question.format(generic_keyword) + "".join(generic_question_list[question_counter]) + " ?"
+                user_answer = raw_input("Answer: ")
+                if check_answer(generic_question_list[question_counter], user_answer, country_capital) is False:
+                    number_of_errors -= 1
+                    printbox(generic_wrong_answer.format(user_answer.title(), generic_keyword,
+                             "".join(generic_question_list[question_counter])))
+                    print number_of_errors, "more chance(s)"
+                else:
+                    printbox("Correct! " + generic_answer.format(user_answer.title(), generic_keyword,
+                             "".join(generic_question_list[question_counter])))
+                    break
+            else:
+                printbox("Game Over")
+                exit()
+    return
+
+
+def check_answer(question_key, user_answer, ref_dictionary):
+    """Do check the user input to the dictionary."""
+    if user_answer.title() == ref_dictionary.get("".join(question_key)):
+        return True
+    return False
+
 
 max_game_level = len(country_capital) / num_question_per_level
 # Sets max selectable game level depending of entries in dictionary country_capital
-country_list = []
+generic_question_list = []
 # Initiate list for countries during game
-print "This is a game of Geography"
+print generic_banner.format("Geography")
 question_multiplier, number_of_errors = game_settings()
 # Gets user input for game difficulty and limit
-counter = 0
-while counter < question_multiplier * num_question_per_level:
-    add_country_question = random.sample(country_capital, 1)
-    # Generate random Countries for questionaire
-    # Check for duplicate
-    if add_country_question not in country_list:
-        country_list.append(add_country_question)
-        counter += 1
 
-
-for question_counter in range(0, len(country_list)):
-    print "What is the {} of ".format(geography_subject) + "".join(country_list[question_counter]) + " ?"
-    user_answer = raw_input("Answer: ")
-    printbox("{} is the {} of {}".format(user_answer.title(), geography_subject,
-                                         "".join(country_list[question_counter])))
+questionaire(create_questions(question_multiplier, country_capital), geography_keyword, number_of_errors, country_capital)
+print "Good Job!"
