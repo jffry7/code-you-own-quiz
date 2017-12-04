@@ -156,12 +156,11 @@ def create_questions(question_multiplier, generic_pool):
 
 def questionaire(generic_question_list, generic_keyword, number_of_mistakes, generic_dictionary):
     """Do present user for a question related to selected subject."""
-    # This function has 17 lines
+    # This function has 16 lines but 2 long lines were split to 2 lines
     # Uses the generic question/answer format to present the I/O to user
     # Number of question is dependent on user selected level
     for question_counter in range(0, len(generic_question_list)):
         while True:
-            user_answer = ""
             if number_of_mistakes != 0:
                 print generic_question.format(generic_keyword) + "".join(generic_question_list[question_counter]) + " ?"
                 user_answer = raw_input("Answer: ")
