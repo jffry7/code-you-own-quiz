@@ -20,8 +20,7 @@ subjects = ["Chemistry", "Geography"]
 # Increase by 4 or the num_question_per_level to add 1 level
 # Entry for subject Chemistry, max level 5
 chemistry_keyword = "chemical symbol"
-checmical_symbol = {
-                    "Hydrogen": "H",
+checmical_symbol = {"Hydrogen": "H",
                     "Helium": "He",
                     "Lithium": "L",
                     "Beryllium": "Be",
@@ -44,24 +43,23 @@ checmical_symbol = {
                     }
 # Entry for subject Geography, max level 4
 geography_keyword = "capital"
-country_capital = {
-                    "Australia": "Canberra",
-                    "Austria": "Vienna",
-                    "Belgium": "Brussels",
-                    "Botswana": "Gaborone",
-                    "Canada": "Ottawa",
-                    "Cyprus": "Nicosia",
-                    "Honduras": "Tegucigalpa",
-                    "Indonesia": "Jakarta",
-                    "Ireland": "Dublin",
-                    "Japan": "Tokyo",
-                    "North Korea": "Pyongyang",
-                    "Latvia": "Riga",
-                    "Morocco": "Rabat",
-                    "Philippines": "Manila",
-                    "Singapore": "Singapore",
-                    "Vietnam": "Hanoi"
-                    }
+country_capital = {"Australia": "Canberra",
+                   "Austria": "Vienna",
+                   "Belgium": "Brussels",
+                   "Botswana": "Gaborone",
+                   "Canada": "Ottawa",
+                   "Cyprus": "Nicosia",
+                   "Honduras": "Tegucigalpa",
+                   "Indonesia": "Jakarta",
+                   "Ireland": "Dublin",
+                   "Japan": "Tokyo",
+                   "North Korea": "Pyongyang",
+                   "Latvia": "Riga",
+                   "Morocco": "Rabat",
+                   "Philippines": "Manila",
+                   "Singapore": "Singapore",
+                   "Vietnam": "Hanoi"
+                   }
 generic_question = "What is the {} of "
 generic_answer = "{} is the {} of {}"
 generic_wrong_answer = "{} is not the {} of {}"
