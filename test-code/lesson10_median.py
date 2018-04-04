@@ -41,7 +41,7 @@ def median(a, b, c):
     big = biggest(a, b, c)
     if big == a:
         return bigger(b, c)
-    if big == b:
+    elif big == b:
         return bigger(a, c)
     else:
         return bigger(a, b)
@@ -55,3 +55,5 @@ print(median(9, 3, 6))
 
 print(median(7, 8, 7))
 # >>> 7
+
+print(median(2, 3, 1))

@@ -22,7 +22,7 @@ subjects = ["Chemistry", "Geography"]
 chemistry_keyword = "chemical symbol"
 checmical_symbol = {"Hydrogen": "H",
                     "Helium": "He",
-                    "Lithium": "L",
+                    "Lithium": "Li",
                     "Beryllium": "Be",
                     "Boron": "B",
                     "Carbon": "C",
@@ -123,7 +123,7 @@ def quiz_subject(subject_selection):
     return selected_subject - 1
 
 
-def quiz_settings():
+def quiz_settings(max_quiz_level):
     """Return the quiz level and mistakes allowed."""
     # Defines user preferred quiz level
     # Defines user preferred number of guesses
@@ -131,7 +131,7 @@ def quiz_settings():
     # +1 is for range purpose only
     quiz_level = ask_question("Choose quiz level from " + str(min_number) +
                               " to " + str(max_quiz_level) + " : ", (max_quiz_level + 1))
-    print "Total number of question is " + str(num_question_per_level) + " times the quiz difficulty"
+    print "Total number of question is " + str(num_question_per_level * quiz_level)
     number_of_mistakes = ask_question("How many mistake(s) allowed before the quiz ends? ",
                                       ((num_question_per_level * quiz_level) + 1))
     # Range is multiple of quiz level
@@ -189,33 +189,45 @@ def check_answer(question_key, user_answer, ref_dictionary):
     return False
 
 
-# User selects the subject
-selected_quiz_subject = subjects[quiz_subject(subjects)]
-# Only 2 subject can be selected in this version
-if selected_quiz_subject == "Chemistry":
-    max_quiz_level = len(checmical_symbol) / num_question_per_level
-    # Sets max selectable quiz level depending of entries in dictionary checmical_symbol
-    printbox(generic_banner.format(selected_quiz_subject))
-    # Selects the appropritate dictionary
-    generic_dictionary = checmical_symbol
-    # Sets the generic word for questionaire
-    generic_keyword = chemistry_keyword
-elif selected_quiz_subject == "Geography":
-    max_quiz_level = len(country_capital) / num_question_per_level
-    # Sets max selectable quiz level depending of entries in dictionary country_capital
-    printbox(generic_banner.format(selected_quiz_subject))
-    # Selects the appropritate dictionary
-    generic_dictionary = country_capital
-    # Sets the generic word for questionaire
-    generic_keyword = geography_keyword
+def choose_subject():
+    """Do let the User selects the subject."""
+    selected_quiz_subject = subjects[quiz_subject(subjects)]
+    # Only 2 subject can be selected in this version
+    if selected_quiz_subject == "Chemistry":
+        quiz_level = len(checmical_symbol) / num_question_per_level
+        # Sets max selectable quiz level depending of entries in dictionary checmical_symbol
+        printbox(generic_banner.format(selected_quiz_subject))
+        # Selects the appropritate dictionary
+        generic_dictionary = checmical_symbol
+        # Sets the generic word for questionaire
+        generic_keyword = chemistry_keyword
+    elif selected_quiz_subject == "Geography":
+        quiz_level = len(country_capital) / num_question_per_level
+        # Sets max selectable quiz level depending of entries in dictionary country_capital
+        printbox(generic_banner.format(selected_quiz_subject))
+        # Selects the appropritate dictionary
+        generic_dictionary = country_capital
+        # Sets the generic word for questionaire
+        generic_keyword = geography_keyword
+    return generic_dictionary, generic_keyword, quiz_level
+
+
+def play():
+    """Starts the game."""
+    selected_dictionary, selected_keyword, max_quiz_level = choose_subject()
+    # Request user to input quiz difficulty and max errors
+    question_multiplier, number_of_errors = quiz_settings(max_quiz_level)
+    # Runs the quiz
+    grade_of_quiz = number_of_errors - questionaire(create_questions(question_multiplier, selected_dictionary),
+                                                    selected_keyword, number_of_errors, selected_dictionary)
+    # it will only reach this point of user mistake did not reach number_of_errors
+    printbox("Good Job!")
+    # Gives feedback to user regarding the number of mistakes
+    printbox(str(grade_of_quiz) + " mistake(s) made")
+    return
+
+
 # Initiate list for countries during quiz
 generic_question_list = []
-# Request user to input quiz difficulty and max errors
-question_multiplier, number_of_errors = quiz_settings()
-# Runs the quiz
-grade_of_quiz = number_of_errors - questionaire(create_questions(question_multiplier, generic_dictionary),
-                                                generic_keyword, number_of_errors, generic_dictionary)
-# it will only reach this point of user mistake did not reach number_of_errors
-printbox("Good Job!")
-# Gives feedback to user regarding the number of mistakes
-printbox(str(grade_of_quiz) + " mistakes made")
+# For future use when the game wants to continue
+play()

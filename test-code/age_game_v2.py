@@ -57,7 +57,7 @@ print
 user_identity[0][1], user_identity[0][2] = split_number(user_input_number, current_year)
 printbox(user_identity[0][0].title() + "'s lucky number is " + user_identity[0][1])
 printbox("You are " + user_identity[0][2] + " yrs old")
-print user_identity
+# print user_identity
 # print "+-" + bar(len(split_number(user_input_number, current_year))) + "-+"
 # print "| " + split_number(user_input_number, current_year) + " |"
 # print "+-" + bar(len(split_number(user_input_number, current_year))) + "-+"
