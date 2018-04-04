@@ -213,7 +213,7 @@ def choose_subject():
 
 
 def play():
-    """Starts the game."""
+    """Do starts the game."""
     selected_dictionary, selected_keyword, max_quiz_level = choose_subject()
     # Request user to input quiz difficulty and max errors
     question_multiplier, number_of_errors = quiz_settings(max_quiz_level)
